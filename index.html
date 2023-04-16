@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Challenge</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <!-- <div class="flex-container"> -->
+      <h2>View High Scores</h2>
+      <div>
+        <h2>Quiz Challenge</h2>
+        <button id="btnstart" class="start_button">Start</button>
+      </div>
+      <h2>Time: <span id="counter"></span></h2>
+      <!-- </div> -->
+    </header>
+
+    <main class="main-section">
+      <br />
+
+      <section class="questions">
+        <div class="ques-div">
+          <h1 id="questionHeader"></h1>
+          <ol id="Options"></ol>
+          <!-- <h3 id="result"></h3> -->
+        </div>
+        <div class="result">
+          <hr />
+          <p id="result">Write</p>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card results-aside">
+          <div class="win-loss-container">
+            <div>
+              <h2>Correct: <span class="win">0 </span></h2>
+              <h2>Wrong: <span class="lose">0</span></h2>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <script src="assets/script.js"></script>
+  </body>
+</html>
