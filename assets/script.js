@@ -7,6 +7,13 @@ var lose = document.querySelector(".lose");
 var timerElement = document.querySelector("#counter");
 var startButton = document.querySelector("#btnstart");
 var resultDiv = document.querySelector("#result");
+var btnSubmit = document.querySelector("#btnSubmit");
+var storageSection = document.querySelector(".storage");
+var initialName = document.querySelector("#initial");
+var storageDiv = document.querySelector("#storageDiv");
+var viewInitial = document.querySelector("#viewInitial");
+var viewCorrectAns = document.querySelector("#viewCorrectAns");
+var finalStoredValue = document.querySelector("#localStorageView");
 
 var chosenWord = "";
 var numBlanks = 0;
@@ -21,24 +28,55 @@ var questions;
 function fillQuestions() {
   questions = [
     {
-      question: "What is your Name?",
-      options: ["Nidhi", "Satyam", "Anju", "Naresh"],
-      correctAnswer: "Nidhi",
+      question: "What does HTML stand for?",
+      options: [
+        "Home Tool Markup Language",
+        "Hyper Text Markup Language",
+        "HyperLinks and Text Markup Language",
+        "Home Text Markup Language",
+      ],
+      correctAnswer: "Hyper Text Markup Language",
     },
     {
-      question: "What is your Age?",
-      options: ["13", "45", "36", "90"],
-      correctAnswer: "36",
+      question: "Choose the correct HTML element for the largest Heading?",
+      options: ["<heading>", "<h1>", "<h6>", "<head>"],
+      correctAnswer: "<h1>",
     },
     {
-      question: "What is name of your best friend?",
-      options: ["Fatima", "Renju", "Alex", "Jim"],
-      correctAnswer: "Renju",
+      question: "What is the correct HTML element for inserting a line break?",
+      options: ["<break>", "<lb>", "<br>", "<hr>"],
+      correctAnswer: "<br>",
     },
     {
-      question: "Which state you were born?",
-      options: ["Calcutta", "Hyderabad", "Mumbai", "Gujrat"],
-      correctAnswer: "Gujrat",
+      question: "Choose the correct HTML element to define important text",
+      options: ["<b>", "<i>", "<strong>", "<important>"],
+      correctAnswer: "<important>",
+    },
+    {
+      question: "Choose the correct HTML element to define emphasized text",
+      options: ["<em>", "<italic>", "<span>", "<i>"],
+      correctAnswer: "<em>",
+    },
+    {
+      question: "Which character is used to indicate an end tag?",
+      options: ["*", "^", "<", "/"],
+      correctAnswer: "/",
+    },
+    {
+      question: "How can you make a numbered list?",
+      options: ["ul", "list", "ol", "dl"],
+      correctAnswer: "ol",
+    },
+    {
+      question: "Which HTML element defines the title of a document?",
+      options: ["head", "meta", "title", "link"],
+      correctAnswer: "title",
+    },
+    {
+      question:
+        "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+      options: ["alt", "src", "title", "longdesc"],
+      correctAnswer: "alt",
     },
   ];
 }
@@ -109,6 +147,8 @@ function loseGame() {
   resultDiv.style.visibility = "visible";
   if (timerCount <= 0) {
     result.textContent = "GAME OVER";
+    storageSection.style.visibility = "visible";
+    storageDiv.style.visibility = "visible";
     optionsList.innerHTML = "";
     questionheader.textContent = "";
     startButton.disabled = false;
@@ -146,6 +186,8 @@ function setLosses() {
 }
 
 function startGame() {
+  getWins();
+  getlosses();
   resultDiv.style.visibility = "hidden";
   isWin = false;
   timerCount = 60;
@@ -188,30 +230,46 @@ function init() {
 
 // These functions are used by init
 function getWins() {
+  winCounter = 0;
+  //localStorage.setItem("winCount");
+
   // Get stored value from client storage, if it exists
-  var storedWins = localStorage.getItem("winCount");
-  // If stored value doesn't exist, set counter to 0
-  if (storedWins === null) {
-    winCounter = 0;
-  } else {
-    // If a value is retrieved from client storage set the winCounter to that value
-    winCounter = storedWins;
-  }
+  // var storedWins = localStorage.getItem("winCount");
+  // // If stored value doesn't exist, set counter to 0
+  // if (storedWins === null) {
+  //   winCounter = 0;
+  // } else {
+  //   // If a value is retrieved from client storage set the winCounter to that value
+  //   winCounter = storedWins;
+  // }
   //Render win count to page
   win.textContent = winCounter;
 }
 
 function getlosses() {
-  var storedLosses = localStorage.getItem("loseCount");
-  if (storedLosses === null) {
-    loseCounter = 0;
-  } else {
-    loseCounter = storedLosses;
-  }
+  loseCounter = 0;
+
+  // var storedLosses = localStorage.getItem("loseCount");
+  // if (storedLosses === null) {
+  //   loseCounter = 0;
+  // } else {
+  //   loseCounter = storedLosses;
+  // }
   lose.textContent = loseCounter;
+}
+
+function saveHighScore() {
+  localStorage.setItem("initials", document.getElementById("initial").value);
+  localStorage.setItem("correctAns", winCounter);
+  storageDiv.innerHTML = "";
+  finalStoredValue.style.visibility = "visible";
+  viewInitial.textContent = localStorage.getItem("initials");
+  viewCorrectAns.textContent = localStorage.getItem("correctAns");
 }
 
 init();
 
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
+
+btnSubmit.addEventListener("click", saveHighScore);
