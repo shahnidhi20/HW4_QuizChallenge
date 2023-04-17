@@ -36,6 +36,16 @@ header {
   color: white;
 }
 
+.submit_button {
+  width: 170px;
+  height: 40px;
+  margin-left: 10px;
+  background: purple;
+  border: none;
+  border-radius: 10px;
+  color: white;
+}
+
 .questions {
   /* border: solid 1px black; */
   box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
@@ -50,6 +60,19 @@ header {
   font-style: italic;
   font-size: larger;
   color: purple;
+}
+
+.storage {
+  visibility: hidden;
+  padding: 20px;
+  font-style: italic;
+  font-size: larger;
+  color: purple;
+  display: flex;
+}
+
+#initial {
+  margin-left: 10px;
 }
 
 .result {
@@ -125,4 +148,10 @@ li:hover {
 /* Element separation */
 li + li {
   border-top: 1px solid rgba(56, 55, 55, 0.687);
+}
+
+#localStorageView {
+  display: flex;
+  padding: 10px;
+  visibility: hidden;
 }
